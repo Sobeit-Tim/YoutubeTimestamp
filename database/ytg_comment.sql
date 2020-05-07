@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.23, for Win64 (x86_64)
 --
--- Host: localhost    Database: vtg
+-- Host: localhost    Database: ytg
 -- ------------------------------------------------------
 -- Server version	5.7.23-log
 
@@ -27,7 +27,7 @@ CREATE TABLE `comment` (
   `score` double NOT NULL,
   `text` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (63,5,'I love this so much!'),(64,3.5,'Not bad'),(65,4,'Pretty good'),(66,2,'I think i can make better than this'),(67,1,'This website is trash.'),(68,4,'Oh my goodness'),(69,5,'Why korean not support???'),(72,3,'OK. It works.');
+INSERT INTO `comment` VALUES (63,5,'I love this so much!'),(64,3.5,'Not bad'),(65,4,'Pretty good'),(66,2,'I think i can make better than this'),(67,1,'This website is trash.'),(68,4,'Oh my goodness'),(69,5,'Why korean not support???'),(72,3,'OK. It works.'),(75,5,'Life is short. You need Python.'),(77,2,'Test');
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-30 22:18:06
+-- Dump completed on 2020-05-07 15:01:17

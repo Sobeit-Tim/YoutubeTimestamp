@@ -1,5 +1,5 @@
 <?php
-    $conn = mysqli_connect("localhost", "root", "1111", "vtg");
+    $conn = mysqli_connect("localhost", "root", "1111", "ytg");
 
     mysqli_query($conn, "set session character_set_connection=utf8");
     mysqli_query($conn, "set session character_set_results=utf8");

@@ -1,5 +1,5 @@
 <?php
-    $conn = mysqli_connect("localhost", "root", "1111", "vtg");
+    $conn = mysqli_connect("localhost", "root", "1111", "ytg");
     
     $score = $_POST["score"];
     $text = $_POST["text"];
