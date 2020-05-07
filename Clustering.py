@@ -1,6 +1,12 @@
 import numpy as np
 from collections import Counter
 
+import stem
+
+url = input("Enter your Youtube Link : ")
+
+stem.preprocessing(url)
+
 file = open("stem.txt", "r")
 result = file.read()
 file.close()

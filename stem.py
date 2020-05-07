@@ -12,7 +12,7 @@ caption = yt.captions.all()[0]
 caption.download("Captions") #기본 저장 형태가 srt인듯
 """
 
-def preprocessing():
+def preprocessing(url):
     file = open("subtitle.srt", "r")
     result = file.read()
     file.close()
