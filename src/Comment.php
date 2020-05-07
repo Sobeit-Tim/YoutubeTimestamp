@@ -12,11 +12,10 @@
     $trimmedText = trim($text);
     $trimmedText = preg_replace("/\s+/", "", $trimmedText);
     
-    if($score == "NULL" or $trimmedText == ""){
+    if ($score == "NULL" or $trimmedText == "") {
         echo "<script>alert('You must leave your score and comment.');</script>";
         echo "<meta http-equiv='refresh' content='0;url=Index.php'>";
-    }
-    else{
+    } else {
         $sql = "insert into comment values (NULL, '{$score}', '{$text}')";
         mysqli_query($conn, $sql);
 

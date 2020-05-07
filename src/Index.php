@@ -10,15 +10,15 @@
     $num = mysqli_num_rows($result);
     $sum = 0;
     
-    for($i = 1; $i <= $num; $i++){
+    for ($i = 1; $i <= $num; $i++) {
       $row = mysqli_fetch_array($result);
       $score = $row["score"];
       $sum += $score;
     }
     
-    if($num == 0){
+    if ($num == 0) {
       $avg = 0;
-    }else{
+    } else {
       $avg = $sum / $num;
     }
 ?>
@@ -60,7 +60,7 @@
     echo "Score&nbsp&nbsp&nbsp&nbsp&nbspComment<br>";
     $sql = "select * from comment";
     $result = mysqli_query($conn, $sql);
-    for($i = 1; $i <= $num; $i++){
+    for ($i = 1; $i <= $num; $i++) {
       $row = mysqli_fetch_array($result);
       $score = $row["score"];
       $text = $row["text"];
