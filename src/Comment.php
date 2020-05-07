@@ -8,7 +8,11 @@
     mysqli_query($conn, "set session character_set_results=utf8");
     mysqli_query($conn, "set session character_set_client=utf8");
 
-    if($score == "NULL" or $text == ""){
+    // remove blank from the text
+    $trimmedText = trim($text);
+    $trimmedText = preg_replace("/\s+/", "", $trimmedText);
+    
+    if($score == "NULL" or $trimmedText == ""){
         echo "<script>alert('You must leave your score and comment.');</script>";
         echo "<meta http-equiv='refresh' content='0;url=Index.php'>";
     }

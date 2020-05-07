@@ -27,11 +27,11 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Video Timeline Generator</title>
+  <title>YouTube Timestamp Generator</title>
 </head>
 <body>
-  <h2>Video Timeline Generator based on Text Analysis</h2><br><br>
-  Welcome to the Video Timeline Generator web page!<br>
+  <h2>YouTube Timestamp Generator based on Text Analysis</h2><br><br>
+  Welcome to the YouTube Timestamp Generator web page!<br>
   This page is for prototype about feature to sign up your score and make some comments.<br><br>
   <form action="Comment.php" method="post">
     Score
