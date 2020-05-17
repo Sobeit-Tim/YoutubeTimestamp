@@ -3,17 +3,31 @@ from nltk.stem import PorterStemmer
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 
+from pytube import YouTube
 
-"""from pytube import YouTube
-URL = input("Enter youtube url: ")
-yt = YouTube(URL)
-caption = yt.captions.all()[0]
-
-caption.download("Captions") #기본 저장 형태가 srt인듯
 """
+import requests
+L = "en"
+LANG = "Korean"
+#ID = "7068mw-6lmI"
+ID = 'b3ZjhNG_BrM'
+URL = "http://video.google.com/timedtext?lang={}&v={}".format(L, ID)
+#URL = 'https://www.youtube.com/api/timedtext?lang={}&v={}&name={}'.format(L, ID, LANG)
+#URL = "https://www.googleapis.com/youtube/v3/captions/{}".format(ID)
+response = requests.get(URL)
+print(response.status_code)
+print(response.text)"""
+
 
 def preprocessing(url):
-    file = open("subtitle.srt", "r")
+
+    yt = YouTube(url)
+    caption = yt.captions.all()[0]
+
+    caption.download("Captions") #기본 저장 형태가 srt인듯
+
+    #file = open("subtitle.srt", "r")
+    file = open("Captions (en).srt", "r")
     result = file.read()
     file.close()
 
@@ -42,21 +56,31 @@ def preprocessing(url):
 
     # eliminateWord = ["were", "in", "a", "[", "]", "in"]
     eliminateWord = set(stopwords.words('english'))
-    eliminateWord2 = ["'s", ".", ",", "'re", "?", "!", "'ll"]
+    eliminateWord2 = set(["'s", ".", ",", "'re", "?", "!", "'ll"])
     vocab = {}
-
+    cnt = -1
+    timeRemoveList = []
     for i in text:
         temp = word_tokenize(i)
         # TreebankWordTokenizer().tokenize(i)
         # WordPunctTokenizer().tokenize(i)
         temp = list(filter(lambda x: x not in eliminateWord and x not in eliminateWord2, temp))
         #lemma = [WordNetLemmatizer().lemmatize(w).lower() for w in temp]
-        stem = [PorterStemmer().stem(w).lower() for w in temp]
+        cnt += 1
         if not temp:
+            timeRemoveList.append(cnt)
             continue
+
+        stem = [PorterStemmer().stem(w).lower() for w in temp]
         #tokenText.append(temp)
         #lemmaText.append(lemma)
         stemText.append(stem)
+
+    cnt = 0
+    if len(timeRemoveList) != 0:
+        for i in timeRemoveList:
+            del(time[i-cnt])
+            cnt += 1
 
     #print(tokenText)
     #print(lemmaText)
@@ -72,3 +96,6 @@ def preprocessing(url):
         if i != len(time) - 1:
             file.write("\n")
     file.close()
+
+url = "https://youtu.be/Pnob7eL0eaY"
+preprocessing(url)

@@ -3,6 +3,8 @@ from collections import Counter
 
 import stem
 
+# https://www.youtube.com/watch?v=EvlzEkjVpO8
+
 url = input("Enter your Youtube Link : ")
 
 stem.preprocessing(url)
