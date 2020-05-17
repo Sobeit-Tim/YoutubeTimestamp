@@ -27,7 +27,7 @@ def preprocessing(url):
     caption.download("Captions") #기본 저장 형태가 srt인듯
 
     #file = open("subtitle.srt", "r")
-    file = open("Captions (en).srt", "r")
+    file = open("Captions (en).srt", "r", encoding='UTF8')
     result = file.read()
     file.close()
 
@@ -56,7 +56,7 @@ def preprocessing(url):
 
     # eliminateWord = ["were", "in", "a", "[", "]", "in"]
     eliminateWord = set(stopwords.words('english'))
-    eliminateWord2 = set(["'s", ".", ",", "'re", "?", "!", "'ll"])
+    eliminateWord2 = set(["'s", ".", ",", "'re", "?", "!", "'ll", "'", "\"", "’", "”", "—", "“"])
     vocab = {}
     cnt = -1
     timeRemoveList = []
@@ -86,7 +86,7 @@ def preprocessing(url):
     #print(lemmaText)
     #print(stemText)
 
-    file = open("stem.txt", "w")
+    file = open("stem.txt", "w", encoding='UTF8')
     for i in range(len(time)):
         file.write(time[i] + "\n")
         for j in range(len(stemText[i])):

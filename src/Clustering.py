@@ -9,7 +9,7 @@ url = input("Enter your Youtube Link : ")
 
 stem.preprocessing(url)
 
-file = open("stem.txt", "r")
+file = open("stem.txt", "r", encoding='UTF8')
 result = file.read()
 file.close()
 
@@ -168,7 +168,6 @@ def Recursion(StemTxt, start, end, minsize, iter):
     #printsortedVocab(sortedVocab)
 
     wordVector = getwordVec(sortedVocab, StemTxt, start, end, k) # last num is the length
-    print(wordVector)
 
     feature = getFeature(StemTxt, wordVector, start, end)
 
