@@ -22,7 +22,7 @@ print(response.text)"""
 def preprocessing(url):
 
     yt = YouTube(url)
-    caption = yt.captions.all()[0]
+    caption = yt.captions.get_by_language_code('en')
 
     caption.download("Captions") #기본 저장 형태가 srt인듯
 
@@ -96,6 +96,3 @@ def preprocessing(url):
         if i != len(time) - 1:
             file.write("\n")
     file.close()
-
-url = "https://youtu.be/Pnob7eL0eaY"
-preprocessing(url)

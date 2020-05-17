@@ -158,6 +158,7 @@ def divide_cent(SF, minsize): # feature의 s부터 e까지에서 반갈죽 잘�
     return maxindex
 
 def Recursion(StemTxt, start, end, minsize, iter):
+    global k
     #print(start, " " , end)
     if end - start < minsize:
         return
@@ -166,7 +167,8 @@ def Recursion(StemTxt, start, end, minsize, iter):
 
     #printsortedVocab(sortedVocab)
 
-    wordVector = getwordVec(sortedVocab, StemTxt, start, end, 6) # last num is the length
+    wordVector = getwordVec(sortedVocab, StemTxt, start, end, k) # last num is the length
+    print(wordVector)
 
     feature = getFeature(StemTxt, wordVector, start, end)
 
@@ -185,8 +187,12 @@ def Recursion(StemTxt, start, end, minsize, iter):
     Recursion(StemTxt, start + centroid, end, minsize, iter+1)
 
     return
+# ===== Edit this =====
+n = 7 # size of cluster
+k = 6 # length of word Vec
+# =====================
 
-minsize = int(len(stemText) / 7)
+minsize = int(len(stemText) / n)
 
 print("minsize = ", minsize)
 
