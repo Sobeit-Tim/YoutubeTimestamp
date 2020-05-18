@@ -2,6 +2,7 @@ from socket import *
 import threading
 import os
 import time
+import sys
 
 class Client_Thread(threading.Thread):                       #스레드는 혹시 몰라 일단 내버려둚
     def __init__(self, connectionaddr, connectionSocket):    #소켓 초기값
@@ -51,23 +52,36 @@ class Client_Thread(threading.Thread):                       #스레드는 혹�
 
                 elif msg[0:4] == "POST":            #검색 창에 url을 입력한 것을 받을 때
                     fileopen = "TimeStamp.html"
+                    # fileopen = "InputUrl.php"
 
                     body = msg.split("\r\n\r\n")
                     bodyList = body[1].split("&")
                     url = bodyList[0].split("=")[1]
                     print("url 주소는?")
-                    print(url)
+                    # print(url)
+                    
+                    # Parse input url to original
+                    parsed_url = list()
+                    parsed_url.append("https://www.youtube.com/watch?v=")
+                    parsed_url.append(url[url.index("D") + 1:])
+                    parsed_url = "".join(parsed_url)
+                    print(parsed_url)
+
+                    # Receive variable from php
+                    # test = sys.argv[1]
+                    # print(test)
 
                     input = open(fileopen, "rb")
                     str = 'HTTP/1.1 200 OK\r\n\r\n'
                     newMsg = str.encode()
+
                     while True:
                         content = input.read(BUFFER)
                         if not content:
                             break
                         newMsg = newMsg + content
 
-                elif "font" in input:           #폰트
+                elif "font" in input:        #폰트
                     fileopen = input
                     input = open(fileopen, "rb")
                     str = 'HTTP/1.1 200 OK\r\n\r\n'

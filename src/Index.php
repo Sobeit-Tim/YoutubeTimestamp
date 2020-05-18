@@ -1,26 +1,26 @@
 <?php
-    $conn = mysqli_connect("localhost", "root", "1111", "ytg");
+  $conn = mysqli_connect("localhost", "root", "1111", "ytg");
 
-    mysqli_query($conn, "set session character_set_connection=utf8");
-    mysqli_query($conn, "set session character_set_results=utf8");
-    mysqli_query($conn, "set session character_set_client=utf8");
+  mysqli_query($conn, "set session character_set_connection=utf8");
+  mysqli_query($conn, "set session character_set_results=utf8");
+  mysqli_query($conn, "set session character_set_client=utf8");
 
-    $sql = "select score from comment";
-    $result = mysqli_query($conn, $sql);
-    $num = mysqli_num_rows($result);
-    $sum = 0;
-    
-    for ($i = 1; $i <= $num; $i++) {
-      $row = mysqli_fetch_array($result);
-      $score = $row["score"];
-      $sum += $score;
-    }
-    
-    if ($num == 0) {
-      $avg = 0;
-    } else {
-      $avg = $sum / $num;
-    }
+  $sql = "select score from comment";
+  $result = mysqli_query($conn, $sql);
+  $num = mysqli_num_rows($result);
+  $sum = 0;
+  
+  for ($i = 1; $i <= $num; $i++) {
+    $row = mysqli_fetch_array($result);
+    $score = $row["score"];
+    $sum += $score;
+  }
+  
+  if ($num == 0) {
+    $avg = 0;
+  } else {
+    $avg = $sum / $num;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -30,13 +30,13 @@
   <title>YouTube Timestamp Generator</title>
 </head>
 <body>
-  <h2>YouTube Timestamp Generator based on Text Analysis</h2><br><br>
+  <h2>YouTube Timestamp Generator</h2><br><br>
   Welcome to the YouTube Timestamp Generator web page!<br>
   This page is for prototype about feature to sign up your score and make some comments.<br><br>
   <form action="Comment.php" method="post">
     Score
     <select name="score">
-      <option value="NULL">Select your score.</option>
+      <option value="NULL">Select your score</option>
       <option value="5">5</option>
       <option value="4.5">4.5</option>
       <option value="4">4</option>
