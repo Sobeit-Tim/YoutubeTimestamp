@@ -2,7 +2,9 @@ from socket import *
 import threading
 import os
 import time
-import sys
+# import sys
+# import requests
+# import urllib.request
 
 class Client_Thread(threading.Thread):                       #스레드는 혹시 몰라 일단 내버려둚
     def __init__(self, connectionaddr, connectionSocket):    #소켓 초기값
@@ -65,7 +67,15 @@ class Client_Thread(threading.Thread):                       #스레드는 혹�
                     parsed_url.append("https://www.youtube.com/watch?v=")
                     parsed_url.append(url[url.index("D") + 1:])
                     parsed_url = "".join(parsed_url)
-                    print(parsed_url)
+                    # print(parsed_url)
+
+                    # with urllib.request.urlopen("http://localhost:10080/InputUrl.php") as response:
+                    #     html = response.read()
+                    # print(html.decode("utf-8"))
+
+                    # input_url = "http://localhost:10080/InputUrl.php"
+                    # response = requests.post(input_url, data = {"url":parsed_url})
+                    # response.read()
 
                     # Receive variable from php
                     # test = sys.argv[1]

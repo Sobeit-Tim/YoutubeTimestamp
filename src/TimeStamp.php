@@ -110,29 +110,7 @@
           </div>
         </div>
     </section>
-    <!-- <script type="text/javascript" src="mysql-test.js"></script> -->
-    <script>
-      // alert("Mysql Test");
-      
-      var mysql = require('mysql');
- 
-      var connection = mysql.createConnection({
-        host     : 'localhost',
-        user     : 'root',
-        password : '1111',
-        database : 'ytg'
-      });
 
-      connection.connect();
-        
-      connection.query('select * from comment', function (error, results, fields) {
-          if (error) {
-              alert(error);
-          }
-          alert(results);
-      });
-        
-      connection.end();
-    </script>
+
   </body>
 </html>
