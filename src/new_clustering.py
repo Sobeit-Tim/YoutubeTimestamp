@@ -1,53 +1,53 @@
 import numpy as np
 from collections import Counter
-
 import stem
 
-# https://www.youtube.com/watch?v=EvlzEkjVpO8
 
-# url = input("Enter your Youtube Link : ")
+class Clustering:
+    def __init__(self, n, k):
+        self.n = n
+        self.k = k
 
-def getSortedVocab(stemTxt, start, end):
-    voCab = {}
-    for i in range(start, end):
-        for w in stemTxt[i]:
-            if w in voCab:
-                voCab[w] += 1
+        self.time = []
+        self.stemTxt = []
+    
+    def getSortedVocab(stemTxt, start, end):
+        voCab = {}
+        for i in range(start, end):
+            for w in stemTxt[i]:
+                if w in voCab:
+                    voCab[w] += 1
+                else:
+                    voCab[w] = 1
+
+        #print("단어의 개수", len(voCab))
+        #print("1 개 이상의 단어의 개수", sum(x > 1 for x in voCab.values()))
+        #print(voCab)
+
+        sortedvoCab = sorted(voCab.items(), key=(lambda x: x[1]), reverse=True) # value 순 정렬.
+
+        #print(sortedvoCab)
+
+        return sortedvoCab
+    
+    def printsortedVocab(sortedVocab):
+        #for printing the contents in sortedvocab
+        preValue = sortedVocab[0][1]
+        print(preValue, end=" ")
+        for (key, value) in sortedVocab:
+            if value != preValue:
+                preValue = value
+                print("\n", value, key, end=" ")
             else:
-                voCab[w] = 1
+                print(key, end=" ")
+        print("\n", end=" ")
+        return
 
-    #print("단어의 개수", len(voCab))
-    #print("1 개 이상의 단어의 개수", sum(x > 1 for x in voCab.values()))
-    #print(voCab)
-
-    sortedvoCab = sorted(voCab.items(), key=(lambda x: x[1]), reverse=True) # value 순 정렬.
-
-    #print(sortedvoCab)
-
-    return sortedvoCab
-
-#sortedVocab = getSortedVocab(stemText, 0, len(stemText))
-
-def printsortedVocab(sortedVocab):
-    #for printing the contents in sortedvocab
-    preValue = sortedVocab[0][1]
-    print(preValue, end=" ")
-    for (key, value) in sortedVocab:
-        if value != preValue:
-            preValue = value
-            print("\n", value, key, end=" ")
-        else:
-            print(key, end=" ")
-    print("\n", end=" ")
-    return
-
-#printsortedVocab(sortedVocab)
-
-def getfirst(word, linelist, start, end):
-    for i in range (start, end):
-        if word in linelist[i]:
-            return i
-    return -1
+    def getfirst(word, linelist, start, end):
+        for i in range (start, end):
+            if word in linelist[i]:
+                return i
+        return -1
 
 def getlast(word, linelist, start, end):
     for i in range (end - 1, start - 1, -1):
@@ -98,7 +98,6 @@ def getSumFeature(feat):
 
 #sumFeature = getSumFeature(feature)
 
-
 def euc_similar(a, b):
     return np.sqrt(np.sum((a-b)**2))
 
@@ -107,8 +106,6 @@ def manhattan_similar(a, b):
 
 def cosine_similar(a, b):  # 1 - same,  0 - perpendicular , -1 - reverse
     return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b) + 0.000001)
-
-
 
 def divide_cent(SF, minsize): # feature의 s부터 e까지에서 반갈죽 잘하는 center를 구하자
     minhalf = minsize >> 1
@@ -137,8 +134,8 @@ def divide_cent(SF, minsize): # feature의 s부터 e까지에서 반갈죽 잘�
 
     return maxindex
 
-def Recursion(StemTxt, start, end, minsize, iter):
-    # global k, partition
+def Recursion(StemTxt, start, end, minsize, iter, k):
+    # global k
     #print(start, " " , end)
     if end - start < minsize:
         return
@@ -156,20 +153,25 @@ def Recursion(StemTxt, start, end, minsize, iter):
     centroid = divide_cent(sumFeature, minsize)
     #print (centroid)
     #do it for front
-    Recursion(StemTxt, start, start + centroid, minsize, iter+1)
+    Recursion(StemTxt, start, start + centroid, minsize, iter+1, k)
 
     #print the result
     #print(" " * iter, start + centroid, " ", time[start + centroid])
     partition.append(start + centroid)
 
     #do it for back
-    Recursion(StemTxt, start + centroid, end, minsize, iter+1)
+    Recursion(StemTxt, start + centroid, end, minsize, iter+1, k)
 
     return
 
+#sortedVocab = getSortedVocab(stemText, 0, len(stemText))
+
+#printsortedVocab(sortedVocab)
+
+
 def main(url):
-    global k, partition
-    
+    url = input("Enter your Youtube Link : ")
+
     stem.preprocessing(url)
 
     file = open("stem.txt", "r", encoding='UTF8')
@@ -190,48 +192,29 @@ def main(url):
     #print(stemText)
     partition = [0, len(stemText)]
 
+
     # ===== Edit this =====
-    n = 4 # size of cluster
-    k = 4 # length of word Vec
+    n = 7 # size of cluster
+    k = 6 # length of word Vec
     # =====================
 
     minsize = int(len(stemText) / n)
 
-    result = list()
+    print("minsize = ", minsize)
 
-    # print("minsize = ", minsize)
-    result.append("minsize = ")
-    result.append(minsize)
-    result.append("\n")
-
-    Recursion(stemText, 0, len(stemText), minsize ,0)
+    Recursion(stemText, 0, len(stemText), minsize ,0, k)
 
     partition.sort()
-    # print(partition)
-    result.append(partition)
-    result.append("\n")
+    print(partition)
 
     for i in range (len(partition) - 1):
-        timestamp = list()
-        # print(time[partition[i]][0][:8],", [ " ,end = "")
-        result.append(time[partition[i]][0][:8])
-        result.append(", [ ")
+        print(time[partition[i]][0][:8],", [ " ,end = "")
         sortvocab = getSortedVocab(stemText, partition[i], partition[i+1])
         for j in range (4):
-            # print(sortvocab[j][0].upper(), end=", ")
-            timestamp.append(sortvocab[j][0].upper())
-        # print(sortvocab[4][0].upper(), end=" ")
-        timestamp.append(sortvocab[4][0].upper())
-        # print("]")
-        timestamp = ", ".join(timestamp)
-        result.append(timestamp)
-        result.append("]\n")
+            print(sortvocab[j][0].upper(), end=", ")
+        print(sortvocab[4][0].upper(), end=" ")
+        print("]")
 
     #centroid = divide_cent(sumFeature)
 
     #print("center", centroid, time[centroid])
-    # print(result)
-
-    result = "".join(str(value) for value in result)
-
-    return result

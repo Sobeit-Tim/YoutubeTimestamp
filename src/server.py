@@ -17,21 +17,23 @@ class Client_Thread(threading.Thread):                       #스레드는 혹�
         User_ID = ''
         while True:
             msg = self.csocket.recv(4096).decode()
-            print("받은 메시지!")            #http 메시지가 어떤 형식으로 오는 지 볼 수 있음
-            print(msg)
-            print("----------")
+            # print("받은 메시지!")            #http 메시지가 어떤 형식으로 오는 지 볼 수 있음
+            # print(msg)
+            # print("----------")
 
             try:
                 input = msg[msg.find("/") + 1:msg.find("HTTP") - 1]
-                print("어떤 파일을 요구?")
-                print(input)
-                print("형식은?")
-                print(msg[0:4])
-                print("----------")
+                # print("어떤 파일을 요구?")
+                # print(input)
+                # print("형식은?")
+                # print(msg[0:4])
+                # print("----------")
                 fileopen = ''
 
-                if input == '' or input == 'TimeStamp.html' and msg[0:4] != "POST":  #defalut 페이지로 TimeStamp.html로 설정 -> 후에 index.php로 변경해야 함
-                    fileopen = 'TimeStamp.html'
+                # if input == '' or input == 'TimeStamp.html' and msg[0:4] != "POST":  #defalut 페이지로 TimeStamp.html로 설정 -> 후에 index.php로 변경해야 함
+                if input == "" or input == "Index.html" and msg[0:4] != "POST":
+                    # fileopen = "TimeStamp.html"
+                    fileopen = "Index.html"
                     input = open(fileopen, "rb")              #TimeStamp.html을 "rb"로 열어서 msg를 만들 것
                     str = 'HTTP/1.1 200 OK\r\n\r\n'           #str형태로 200 OK를 적은 후
                     newMsg = str.encode()                     #encode해서 byte로 바꿔줆
@@ -54,7 +56,6 @@ class Client_Thread(threading.Thread):                       #스레드는 혹�
 
                 elif msg[0:4] == "POST":            #검색 창에 url을 입력한 것을 받을 때
                     fileopen = "TimeStamp.html"
-                    # fileopen = "InputUrl.php"
 
                     body = msg.split("\r\n\r\n")
                     bodyList = body[1].split("&")
@@ -67,7 +68,7 @@ class Client_Thread(threading.Thread):                       #스레드는 혹�
                     parsed_url.append("https://www.youtube.com/watch?v=")
                     parsed_url.append(url[url.index("D") + 1:])
                     parsed_url = "".join(parsed_url)
-                    # print(parsed_url)
+                    print(parsed_url)
 
                     # with urllib.request.urlopen("http://localhost:10080/InputUrl.php") as response:
                     #     html = response.read()
@@ -102,8 +103,6 @@ class Client_Thread(threading.Thread):                       #스레드는 혹�
                             break
                         newMsg = newMsg + content
 
-
-
             except:
                 print("no file")
 
@@ -117,7 +116,6 @@ serversocket = socket(AF_INET, SOCK_STREAM)
 serversocket.bind((HOST, serverPort))
 print("Listening")  #서버가 정상적으로 돌아가면 뜸
 #mut = threading.Lock() #threading lock은 필요 없음
-
 
 while True:
     serversocket.listen(100)

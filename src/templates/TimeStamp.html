@@ -3,7 +3,8 @@
   <head>
     <title>Team 2</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="./style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./style.css"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 
   </head>
   <body>
@@ -18,13 +19,13 @@
 
     <section>
         <div id="top">
-          <!-- <form method="POST" action="#"> -->
-          <form method="post" action="InputUrl.php" accept-charset="utf-8" name="url" >
+          <!-- <form method="post" action="#"> -->
+          <form method="post" action="/timestamp" accept-charset="utf-8" name="url">
               <div class="input">
                 <table>
                   <tr>
                     <td><input id="input_url" type="text" name="url" placeholder="Type Youtube URL"></td>
-                    <td class="button"><input type="image"src="./pngwing.com.png" border="5" width="50" alt="제출 버튼"></td>
+                    <td class="button"><input type="image" src="../static/pngwing.com.png" border="5" width="50" alt="제출 버튼"></td>
                   </tr>
                 </table>
               </div>
@@ -110,29 +111,5 @@
           </div>
         </div>
     </section>
-    <!-- <script type="text/javascript" src="mysql-test.js"></script> -->
-    <script>
-      // alert("Mysql Test");
-      
-      var mysql = require('mysql');
- 
-      var connection = mysql.createConnection({
-        host     : 'localhost',
-        user     : 'root',
-        password : '1111',
-        database : 'ytg'
-      });
-
-      connection.connect();
-        
-      connection.query('select * from comment', function (error, results, fields) {
-          if (error) {
-              alert(error);
-          }
-          alert(results);
-      });
-        
-      connection.end();
-    </script>
   </body>
 </html>
