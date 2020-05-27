@@ -167,12 +167,22 @@ def Recursion(StemTxt, start, end, minsize, iter):
 
     return
 
-def main(url):
+def main(url, lang, num):
     global k, partition
-    
-    stem.preprocessing(url)
 
-    file = open("stem.txt", "r", encoding='UTF8')
+    video_name = url.split('v=')[1]
+    file_name = "stem_{}_{}.txt".format(video_name, lang)
+
+    file_exist = False
+    # stem.txt 파일 있는지 체크하는 거 추가해야함.
+
+    if not file_exist:
+        if lang == "en":
+            stem.preprocessing(url)
+        else:
+            stem.preprocessing(url) # korean stemming. 변경해야함.
+
+    file = open(file_name, "r", encoding='UTF8')
     result = file.read()
     file.close()
 
@@ -191,7 +201,7 @@ def main(url):
     partition = [0, len(stemText)]
 
     # ===== Edit this =====
-    n = 4 # size of cluster
+    n = num # size of cluster
     k = 4 # length of word Vec
     # =====================
 

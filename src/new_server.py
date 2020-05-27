@@ -24,7 +24,12 @@ def timestamp():
         url = request.form["url"]
         # print(url)
 
-        result = Clustering.main(url)
+        # -------
+        lang = "en"  # en or ko
+        num = 4        # number of cluster
+        # -------
+
+        result = Clustering.main(url, lang, num)
         # print(result)
         
         # return render_template("TimeStamp.html", result = result)
