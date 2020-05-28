@@ -138,7 +138,6 @@ def divide_cent(SF, minsize): # feature의 s부터 e까지에서 반갈죽 잘�
     return maxindex
 
 def Recursion(StemTxt, start, end, minsize, iter):
-    # global k, partition
     #print(start, " " , end)
     if end - start < minsize:
         return
@@ -167,7 +166,7 @@ def Recursion(StemTxt, start, end, minsize, iter):
 
     return
 
-def main(url, lang, num):
+def main(url, lang, num_of_cluster):
     global k, partition
 
     video_name = url.split('v=')[1]
@@ -201,8 +200,8 @@ def main(url, lang, num):
     partition = [0, len(stemText)]
 
     # ===== Edit this =====
-    n = num # size of cluster
-    k = 4 # length of word Vec
+    n = num_of_cluster # desired number of cluster
+    k = int(n * 6 / 7) # length of word Vec
     # =====================
 
     minsize = int(len(stemText) / n)
@@ -214,7 +213,51 @@ def main(url, lang, num):
     result.append(minsize)
     result.append("\n")
 
-    Recursion(stemText, 0, len(stemText), minsize ,0)
+    #Recursion(stemText, 0, len(stemText), minsize ,0)
+    queue = []
+    queue.append([0,len(stemText)])
+    count = 1
+    while (count < n and len(queue) > 0):
+
+        curmax = 0
+        curindex = 0
+        for i in range (len(queue)):
+            if (queue[i][1] - queue[i][0]) > curmax:
+                curindex = i
+                curmax = queue[i][1] - queue[i][0]
+
+        curstart = queue[curindex][0]
+        curend = queue[curindex][1]
+
+        if curend - curstart < minsize:
+            del queue[curindex]
+            continue
+
+        sortedVocab = getSortedVocab(stemText, curstart, curend)
+
+        # printsortedVocab(sortedVocab)
+
+        wordVector = getwordVec(sortedVocab, stemText, curstart, curend, k)  # last num is the length
+
+        feature = getFeature(stemText, wordVector, curstart, curend)
+
+        sumFeature = getSumFeature(feature)
+
+        centroid = divide_cent(sumFeature, minsize)
+        # print (centroid)
+        # do it for front
+        #Recursion(StemTxt, start, start + centroid, minsize, iter + 1)
+        queue.append([curstart, curstart + centroid])
+        # print the result
+        # print(" " * iter, start + centroid, " ", time[start + centroid])
+        partition.append(curstart + centroid)
+        count += 1
+
+        # do it for back
+        #Recursion(StemTxt, start + centroid, end, minsize, iter + 1)
+        queue.append([curstart + centroid, curend])
+        del queue[curindex]
+
 
     partition.sort()
     # print(partition)
@@ -243,5 +286,7 @@ def main(url, lang, num):
     # print(result)
 
     result = "".join(str(value) for value in result)
-
+    print(result)
     return result
+
+main(0,0,10)
