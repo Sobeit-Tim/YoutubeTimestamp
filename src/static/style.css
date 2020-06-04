@@ -35,7 +35,7 @@ body
 body hr
 {
   padding: 0px;
-  margin: 30px;
+  margin: 50px;
 }
 
 header
@@ -75,31 +75,26 @@ section
   margin: 0px;
 }
 
-#top{
-  width: 100%;
-  height: 100px;
-  margin: 0px;
-  text-align: center;
-}
-#top div table
+div table.input_table
 {
-  display: inline-block;
-  width: 80%;
+  display: inline;
   text-align: center;
+  padding: 10px;
 }
 
-#top div table tr td
+div table.input_table tr td
 {
-  width: 100%;
+  width: 500px;
 }
-#top div table tr td.button
+div table tr td.button
 {
-  width: 50px;
+  width: 30px;
   text-align: left;
 }
 
-#top div.input
+div.input
 {
+  text-align: right;
   display: inline;
 }
 
@@ -112,22 +107,38 @@ section div.body
   padding: 5px;
 }
 
+section div.middle
+{
+  text-align: center;
+}
 section div.side_left
 {
   display: table-cell;
   text-align: center;
   width: 700px;
-  height: 800px;
-  margin: 10px;
-  padding: 30px;
+  height: 500px;
+  margin: 0px;
+  padding: 0px;
 }
 section div.side_right
 {
   display: table-cell;
   text-align: center;
-  width: 700px;
-  margin: 10px;
-  padding: 30px;
+  width: 300px;
+  height: 500px;
+  margin: 0px;
+  padding: 15px;
+}
+section div.side_middle
+{
+  display: inline-block;
+  width: 900px;
+  height: 500px;
+  margin: 0px;
+  padding: 0px;
+  margin-top:80px;
+  text-align: center;
+
 }
 section div.side_right_box
 {
@@ -142,36 +153,26 @@ section div div.form
 section div.my_box
 {
   border: 5px solid pink;
-  border-radius: 5%;
+  border-radius: 20px 20px / 20px 20px;
   width: 100%;
-  height: 700px;
+  height: 500px;
   display: inline-block;
   padding: 0px;
   padding: 0px;
-}
-section div.my_box_right
-{
-  width: 100%;
-  border: 5px solid pink;
-  border-radius: 5%;
-  height: 300px;
-  display: inline-block;
-  padding: 0px;
-  margin: 0px;
 }
 
 section div div.mybox_text_left
 {
-  height: 690px;
-  font-size: 20px;
-  text-align: left;
-  overflow: auto;
+  width: 700px;
+  height: 450px;
+  text-align: center;
+  overflow: hidden;
   padding: 10px;
   margin: 10px;
 }
 section div div.mybox_text_right
 {
-  height: 260px;
+  height: 450px;
   font-size: 20px;
   text-align: left;
   overflow: auto;
@@ -179,6 +180,16 @@ section div div.mybox_text_right
   margin: 10px;
 }
 
+
+section div.mybox_text_middle
+{
+  height: 90%;
+  font-size: 25px;
+  text-align: left;
+  overflow: auto;
+  padding: 10px;
+  margin: 10px;
+}
 section div.input
 {
   padding:0px;
@@ -190,23 +201,22 @@ section div p.left_title
   font-family: "Consola", monospace;
   font-size: 40px;
   text-align: left;
-  padding: 0px;
+  padding: 5px;
   margin: 0px;
 }
 
 section div p.right_title
 {
   font-family: "Consola", monospace;
-  font-size: 30px;
+  font-size: 40px;
   text-align: right;
-  padding: 3px;
+  padding: 0px;
   margin: 0px;
-  padding-top: 10px;
 }
 
 #comment_page
 {
-
+  background: pink;
   width: 100%;
   height: 100%;
 }
@@ -216,7 +226,7 @@ section div p.right_title
 }
 #comment_page tr td.text
 {
-  font-size: 20px;
+  font-size: 30px;
   text-align: left;
   padding: 10px;
   margin: 10px;
@@ -224,9 +234,18 @@ section div p.right_title
 
 #input_url
 {
-  width: 94%;
-  height: 50px;
-  font-size: 20px;
+  width: 70%;
+  height: 30px;
+  font-size: 15px;
+  margin: 5px;
+  padding: 5px;
+}
+
+#input_cn
+{
+  width: 15%;
+  height: 30px;
+  font-size: 15px;
   margin: 5px;
   padding: 5px;
 }
