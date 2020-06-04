@@ -31,7 +31,7 @@ def timestamp():
 
         result = Clustering.main(url, lang, num)
         # print(result)
-        
+        result = result.replace('\n', '<br>') 
         # return render_template("TimeStamp.html", result = result)
         return render_template("Result.html", result = result)
     
@@ -43,4 +43,4 @@ def timestamp():
 #     return render_template("VariableSendTest.html", test = "Test")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0')
