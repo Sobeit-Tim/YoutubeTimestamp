@@ -247,7 +247,7 @@ section div p.right_title
 #input_lan
 {
   width: 10%;
-  height: 50px;
+  height: 45px;
   font-size: 20px;
   margin: 5px;
   padding: 5px;
@@ -256,7 +256,7 @@ section div p.right_title
 #input_url
 {
   width: 60%;
-  height: 50px;
+  height: 30px;
   font-size: 15px;
   margin: 5px;
   padding: 5px;
@@ -265,7 +265,7 @@ section div p.right_title
 #input_cn
 {
   width: 15%;
-  height: 50px;
+  height: 30px;
   font-size: 15px;
   margin: 5px;
   padding: 5px;
