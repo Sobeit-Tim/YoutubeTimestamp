@@ -19,14 +19,26 @@ def timestamp():
             return render_template("index.html")
 
         num = int(num)        # number of cluster
-        err, result, subtitle = main(url, lang, num)
+        err = 0
+        try:
+            video_name_list = url.split('youtu.be/')
+            if len(video_name_list) == 1:
+                video_name = url.replace('v=', ' ').replace('&', ' ').split(' ')[1]
+            else:
+                video_name = video_name_list[1]
+        except:
+            err = 1
+        
+        if err == 1: # not available url, no id
+            #return err, "Not available youtube URL", "None"
+            return render_template("index.html")
+        err, result, subtitle = main(url, lang, num, video_name)
         # err - 1 : not available url
         #       2 : not supported youtube url
         #       3 : no language subtitle
         result = result.replace('\n', '<br>')
         subtitle = subtitle.replace('\n', '<br>')
-        video_id = url.split('v=')[1]
-        link = "https://www.youtube.com/embed/" + video_id
+        link = "https://www.youtube.com/embed/" + video_name
         link = "\"{}\"".format(link)
         print(link)
         #return render_template("TimeStamp.html")

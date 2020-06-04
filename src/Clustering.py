@@ -168,16 +168,10 @@ def Recursion(StemTxt, start, end, minsize, iter):
 
     return
 
-def main(url, lang, num_of_cluster):
+def main(url, lang, num_of_cluster, video_name):
     global k, partition
     print(url)
     err = 0
-    try:
-        video_name = url.split('v=')[1]
-    except:
-        err = 1    
-    if err == 1:
-        return err, "Not available youtube URL", "None"
     
     file_name = "stem_{}_{}.txt".format(video_name, lang)
 
@@ -191,9 +185,9 @@ def main(url, lang, num_of_cluster):
 
     if not file_exist:
         if lang == "en":
-            err, origin_subtitle = stem.preprocessing(url)
+            err, origin_subtitle = stem.preprocessing(url, video_name)
         else:
-            err, origin_subtitle = stem_kor.preprocessing(url) # korean stemming. 변경해야함.
+            err, origin_subtitle = stem_kor.preprocessing(url, video_name) # korean stemming. 변경해야함.
     
     if err == 2:
         return err, "Not supported URL", "None"
@@ -229,9 +223,9 @@ def main(url, lang, num_of_cluster):
     result = list()
 
     # print("minsize = ", minsize)
-    result.append("minsize = ")
-    result.append(minsize)
-    result.append("\n")
+    # result.append("minsize = ")
+    # result.append(minsize)
+    # result.append("\n")
 
     #Recursion(stemText, 0, len(stemText), minsize ,0)
     queue = []
@@ -281,8 +275,8 @@ def main(url, lang, num_of_cluster):
 
     partition.sort()
     # print(partition)
-    result.append(partition)
-    result.append("\n")
+    #result.append(partition)
+    #result.append("\n")
 
     for i in range (len(partition) - 1):
         timestamp = list()
@@ -298,7 +292,7 @@ def main(url, lang, num_of_cluster):
         # print("]")
         timestamp = ", ".join(timestamp)
         result.append(timestamp)
-        result.append(" ]\n")
+        result.append(" ]\n\n")
 
     #centroid = divide_cent(sumFeature)
 

@@ -19,8 +19,8 @@ print(response.status_code)
 print(response.text)"""
 
 
-def preprocessing(url):
-    video_name = url.split('v=')[1]
+def preprocessing(url, video_name):
+    
     yt = YouTube(url)
     caption = yt.captions.get_by_language_code('en')
 
