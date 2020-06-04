@@ -176,6 +176,8 @@ def main(url, lang, num_of_cluster):
         video_name = url.split('v=')[1]
     except:
         err = 1    
+    if err == 1:
+        return err, "Not available youtube URL", "None"
     
     file_name = "stem_{}_{}.txt".format(video_name, lang)
 
@@ -183,6 +185,9 @@ def main(url, lang, num_of_cluster):
     # stem.txt 파일 있는지 체크하는 거 추가해야함.
     if os.path.isfile(file_name):
         file_exist = True
+        file = open("{} ({}).srt".format(video_name, lang), "r", encoding='UTF8')
+        origin_subtitle = file.read()
+        file.close()
 
     if not file_exist:
         if lang == "en":
@@ -190,8 +195,10 @@ def main(url, lang, num_of_cluster):
         else:
             err, origin_subtitle = stem_kor.preprocessing(url) # korean stemming. 변경해야함.
     
-    if err == 1:
-
+    if err == 2:
+        return err, "Not supported URL", "None"
+    elif err == 3:
+        return err, "No lang subtitle", "None"
         
 
     file = open(file_name, "r", encoding='UTF8')
@@ -300,8 +307,4 @@ def main(url, lang, num_of_cluster):
 
     result = "".join(str(value) for value in result)
     # print(result)
-    return result
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
+    return err, result, origin_subtitle

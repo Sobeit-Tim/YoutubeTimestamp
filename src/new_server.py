@@ -17,15 +17,18 @@ def timestamp():
         lang = request.form["language"] # en or ko
         num = int(num)        # number of cluster
 
-        result = main(url, lang, num)
-        # print(result)
-        result = result.replace('\n', '<br>') 
+        err, result, subtitle = main(url, lang, num)
+        # err - 1 : not available url
+        #       2 : not supported youtube url
+        #       3 : no language subtitle
+        result = result.replace('\n', '<br>')
+        subtitle = subtitle.replace('\n', '<br>')
         video_id = url.split('v=')[1]
         link = "https://www.youtube.com/embed/" + video_id
         link = "\"{}\"".format(link)
         print(link)
         #return render_template("TimeStamp.html")
-        return render_template("TimeStamp.html", video = link, result = result)
+        return render_template("TimeStamp.html", video = link, result = result, subtitle = subtitle)
         #return render_template("Result.html", result = result)
     
     else:

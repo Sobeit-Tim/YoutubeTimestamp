@@ -23,10 +23,10 @@ def preprocessing(url):
 
     #file = open("subtitle.srt", "r")
     file = open("{} (ko).srt".format(video_name), "r", encoding='UTF8')
-    result = file.read()
+    subtitle = file.read()
     file.close()
 
-    result = result.split('\n\n')
+    result = subtitle.split('\n\n')
 
     time = []
     text = []
@@ -91,3 +91,4 @@ def preprocessing(url):
         if i != len(time) - 1:
             file.write("\n")
     file.close()
+    return 0, subtitle
