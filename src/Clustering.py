@@ -286,7 +286,5 @@ def main(url, lang, num_of_cluster):
     # print(result)
 
     result = "".join(str(value) for value in result)
-    print(result)
+    # print(result)
     return result
-
-main(0,0,10)
