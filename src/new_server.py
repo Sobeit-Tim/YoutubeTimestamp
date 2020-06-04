@@ -15,8 +15,10 @@ def timestamp():
         url = request.form["url"]
         num = request.form["cluster_num"] # number of cluster
         lang = request.form["language"] # en or ko
-        num = int(num)        # number of cluster
+        if not num or not url: # empty url or empty num
+            return render_template("index.html")
 
+        num = int(num)        # number of cluster
         err, result, subtitle = main(url, lang, num)
         # err - 1 : not available url
         #       2 : not supported youtube url
@@ -32,7 +34,7 @@ def timestamp():
         #return render_template("Result.html", result = result)
     
     else:
-        return render_template("Index.html")
+        return render_template("index.html")
     
 @app.route("/test")
 def db_query_test():
