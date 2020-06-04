@@ -108,7 +108,11 @@
 
           <div class="side_middle">
             <p class="left_title">Average Score
-              <tr><td class="star">★★★★★</td></tr>
+              <tr><td class="star">
+	        {% for i in range(average) %}
+                  ★
+		{% endfor %}
+	      </td></tr>
             </p>
             <div class="my_box">
               <div class="mybox_text_middle">
@@ -118,15 +122,10 @@
                     <form>
                       <select name="number">
                         <option value="5">5</option>
-                        <option value="4.5">4.5</option>
                         <option value="4">4</option>
-                        <option value="3.5">3.5</option>
                         <option value="3">3</option>
-                        <option value="2.5">2.5</option>
                         <option value="2">2</option>
-                        <option value="1.5">1.5</option>
                         <option value="1">1</option>
-                        <option value="0.5">0.5</option>
                         <option value="0">0</option>
               				</select>
                       <textarea name="review" placeholder="comment this page" style="width:300px; height:15px"></textarea>
@@ -136,26 +135,16 @@
                 </div><!--side_rigth_box-->
 
               <table id="comment_page">
-                  <tr>
-                    <td class="star">★★★★★</td>
-                    <td class="text">this page is great!!! </td>
-                  </tr>
-                  <tr>
-                    <td class="star">★★★★★</td>
-                    <td class="text">good page </td>
-                  </tr>
-                  <tr>
-                    <td class="star">★★★★★</td>
-                    <td class="text">I don't like this page </td>
-                  </tr>
-                  <tr>
-                    <td class="star">★★★★★</td>
-                    <td class="text">I am hungry </td>
-                  </tr>
-                  <tr>
-                    <td class="star">★★★★★</td>
-                    <td class="text">Oh my God~ </td>
-                  </tr>
+                  {% for row in score %}
+		  <tr>
+	            <td class="start">
+		    {% for i in range(row[1]) %}
+                    ★
+                    {% endfor %}
+                    </td>
+		    <td class="text">{{row[2]}} </td>
+                  {% endfor %}
+		  </tr>
               </table>
             </div> <!--my_box_text_middle -->
           </div> <!---my_box-->

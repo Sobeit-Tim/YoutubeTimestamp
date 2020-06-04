@@ -3,7 +3,7 @@ import pymysql
 
 class DBQuery:
     def __init__(self):
-        conn = pymysql.connect(host="localhost", user="root", password="1111", db="ytg", charset="utf8")
+        conn = pymysql.connect(host="localhost", user="test", password="1111", db="ytg", charset="utf8")
         curs = conn.cursor()
         
         self.conn = conn
