@@ -58,6 +58,7 @@ header a p
 {
   font-size: 70px;
 }
+
 header p.subtitle
 {
   font-family: "Bernard", monospace;
@@ -75,6 +76,12 @@ section
   margin: 0px;
 }
 
+div.input
+{
+  text-align: right;
+  display: inline;
+}
+
 div table.input_table
 {
   display: inline;
@@ -86,16 +93,11 @@ div table.input_table tr td
 {
   width: 600px;
 }
+
 div table tr td.button
 {
   width: 30px;
   text-align: left;
-}
-
-div.input
-{
-  text-align: right;
-  display: inline;
 }
 
 section div.body
@@ -111,6 +113,7 @@ section div.middle
 {
   text-align: center;
 }
+
 section div.side_left
 {
   display: table-cell;
@@ -120,6 +123,7 @@ section div.side_left
   margin: 0px;
   padding: 0px;
 }
+
 section div.side_right
 {
   display: table-cell;
@@ -129,6 +133,7 @@ section div.side_right
   margin: 0px;
   padding: 15px;
 }
+
 section div.side_middle
 {
   display: inline-block;
@@ -138,18 +143,20 @@ section div.side_middle
   padding: 0px;
   margin-top:80px;
   text-align: center;
-
 }
+
 section div.side_right_box
 {
   text-align: center;
   margin: 10px;
   padding: 0px;
 }
+
 section div div.form
 {
     padding: 10px;
 }
+
 section div.my_box
 {
   border: 5px solid pink;
@@ -170,6 +177,7 @@ section div div.mybox_text_left
   padding: 10px;
   margin: 10px;
 }
+
 section div div.mybox_text_right
 {
   height: 450px;
@@ -180,7 +188,6 @@ section div div.mybox_text_right
   margin: 10px;
 }
 
-
 section div.mybox_text_middle
 {
   height: 90%;
@@ -190,6 +197,7 @@ section div.mybox_text_middle
   padding: 10px;
   margin: 10px;
 }
+
 section div.input
 {
   padding:0px;
@@ -219,10 +227,12 @@ section div p.right_title
   width: 100%;
   height: 100%;
 }
+
 #comment_page tr td.star
 {
   height: 50px;
 }
+
 #comment_page tr td.text
 {
   font-size: 30px;
@@ -248,6 +258,7 @@ section div p.right_title
   margin: 5px;
   padding: 5px;
 }
+
 #input_cn
 {
   width: 15%;
