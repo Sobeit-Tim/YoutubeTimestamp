@@ -20,8 +20,13 @@ def timestamp():
         result = main(url, lang, num)
         # print(result)
         result = result.replace('\n', '<br>') 
-        # return render_template("TimeStamp.html", result = result)
-        return render_template("Result.html", result = result)
+        video_id = url.split('v=')[1]
+        link = "https://www.youtube.com/embed/" + video_id
+        link = "\"{}\"".format(link)
+        print(link)
+        #return render_template("TimeStamp.html")
+        return render_template("TimeStamp.html", video = link, result = result)
+        #return render_template("Result.html", result = result)
     
     else:
         return render_template("Index.html")

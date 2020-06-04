@@ -1,7 +1,9 @@
 import numpy as np
 from collections import Counter
 
+import stem_kor
 import stem
+import os
 
 # https://www.youtube.com/watch?v=EvlzEkjVpO8
 
@@ -168,18 +170,29 @@ def Recursion(StemTxt, start, end, minsize, iter):
 
 def main(url, lang, num_of_cluster):
     global k, partition
-
-    video_name = url.split('v=')[1]
+    print(url)
+    err = 0
+    try:
+        video_name = url.split('v=')[1]
+    except:
+        err = 1    
+    
     file_name = "stem_{}_{}.txt".format(video_name, lang)
 
     file_exist = False
     # stem.txt 파일 있는지 체크하는 거 추가해야함.
+    if os.path.isfile(file_name):
+        file_exist = True
 
     if not file_exist:
         if lang == "en":
-            stem.preprocessing(url)
+            err, origin_subtitle = stem.preprocessing(url)
         else:
-            stem.preprocessing(url) # korean stemming. 변경해야함.
+            err, origin_subtitle = stem_kor.preprocessing(url) # korean stemming. 변경해야함.
+    
+    if err == 1:
+
+        
 
     file = open(file_name, "r", encoding='UTF8')
     result = file.read()
@@ -278,7 +291,7 @@ def main(url, lang, num_of_cluster):
         # print("]")
         timestamp = ", ".join(timestamp)
         result.append(timestamp)
-        result.append("]\n")
+        result.append(" ]\n")
 
     #centroid = divide_cent(sumFeature)
 
@@ -288,3 +301,7 @@ def main(url, lang, num_of_cluster):
     result = "".join(str(value) for value in result)
     # print(result)
     return result
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
