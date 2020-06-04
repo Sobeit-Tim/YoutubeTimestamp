@@ -182,6 +182,7 @@ section div div.mybox_text_right
 {
   height: 450px;
   font-size: 20px;
+  line-height: 130%;
   text-align: left;
   overflow: auto;
   padding: 10px;
@@ -192,6 +193,7 @@ section div.mybox_text_middle
 {
   height: 90%;
   font-size: 25px;
+  line-height: 150%;
   text-align: left;
   overflow: auto;
   padding: 10px;
@@ -236,6 +238,7 @@ section div p.right_title
 #comment_page tr td.text
 {
   font-size: 30px;
+  line-height: 150%;
   text-align: left;
   padding: 10px;
   margin: 10px;
