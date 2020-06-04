@@ -3,12 +3,12 @@
   <head>
     <title>Team 2</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="indexstyle.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='indexstyle.css') }}">
 
   </head>
   <body>
     <header>
-      <a href="TimeStamp.html">
+      <a href="/">
         <p>Capstone Design Team Project</p>
       </a>
       <p class="subtitle">Time Stamp</p>
@@ -17,19 +17,19 @@
     <hr>
 
     <section>
-          <form action="TimeStamp.html" method="post">
+          <form action="/timestamp" method="post">
               <div class="input">
                 <table class="input_table">
                   <tr>
                     <td class="url_cn">
                       <select name="language" id="input_lan">
-                        <option value="english">En</option>
-                        <option value="korean">Ko</option>
+                        <option value="en">En</option>
+                        <option value="ko">Ko</option>
               				</select>
                       <input id="input_url" type="url" name="url" placeholder="Type Youtube URL">
                       <input id="input_cn" type="text" name="cluster_num" placeholder="Cluster NO.">
                     </td>
-                    <td class="button"><input type="image"src="pngwing.com.png" border="5" width="50" alt="제출 버튼"></td>
+                    <td class="button"><input type="image"src="../static/pngwing.com.png" border="5" width="50" alt="제출 버튼"></td>
                   </tr>
                 </table>
               </div>

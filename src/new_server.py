@@ -16,18 +16,15 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("Index.html")
+    return render_template("index.html")
 
 @app.route("/timestamp", methods = ["GET", "POST"])
 def timestamp():
     if request.method == "POST":
         url = request.form["url"]
-        # print(url)
-
-        # -------
-        lang = "en"  # en or ko
-        num = 4        # number of cluster
-        # -------
+        num = request.form["cluster_num"] # number of cluster
+        lang = request.form["language"] # en or ko
+        num = int(num)        # number of cluster
 
         result = Clustering.main(url, lang, num)
         # print(result)
