@@ -3,12 +3,12 @@
   <head>
     <title>Team 2 - Capstone Design</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 
   </head>
   <body>
     <header>
-      <a href="TimeStamp.html">
+      <a href="/">
         <p>Capstone Design Team Project</p>
       </a>
       <p class="subtitle">Time Stamp</p>
@@ -23,13 +23,13 @@
                   <tr>
                     <td>
                         <select name="language" id="input_lan">
-                          <option value="english">En</option>
-                          <option value="korean">Ko</option>
+                          <option value="en">En</option>
+                          <option value="ko">Ko</option>
                 				</select>
                         <input id="input_url" type="url" name="url" placeholder="Type Youtube URL">
                         <input id="input_cn" type="text" name="cluster_num" placeholder="Cluster NO.">
                     </td>
-                    <td class="button"><input type="image"src="pngwing.com.png" border="5" width="30" alt="제출 버튼"></td>
+                    <td class="button"><input type="image"src="../static/pngwing.com.png" border="5" width="30" alt="제출 버튼"></td>
                   </tr>
                 </table>
           </form>
@@ -40,7 +40,7 @@
             <p class="left_title">YouTube</p>
             <div class="my_box">
               <div class="mybox_text_left">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/8Erdny-jZW4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+		      <iframe width="100%" height="100%" src={{video|safe}} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                 </iframe>
               </div>
             </div>
@@ -50,16 +50,7 @@
             <p class="left_title">TimeStamp</p>
             <div class="my_box">
               <div class="mybox_text_right">
-                0:23 : 10, The first manned, powered, heavier-than-air flight <br><br>
-                1:05 : 9, The Attack on Pearl Harbour <br><br>
-                1:45 : 8, Raising the flag on low Jima <br><br>
-                2:26 : 7, The Hindenburg Disaster <br><br>
-                3:09 : 6, V-J Day in Times Square <br><br>
-                3:54 : 5, Migrant Mother <br><br>
-                4:34 : 4, Hiroshima <br><br>
-                5:23 : 3, Tank Man <br><br>
-                6:06 : 2, The Fall of the Berlin Wall <br><br>
-                7:07 : 1, Man on the Moon <br><br>
+                {{ result|safe }}
               </div>
             </div>
             <!--
