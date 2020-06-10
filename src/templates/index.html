@@ -35,6 +35,15 @@
               </div>
           </form>
     </section>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <!-- Do something with the message -->
+            {{ message }}
+
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
     <footer>
        Copyright (c) 2020 SungKyunKwan University, Capstone Design, Team 2
     </footer>

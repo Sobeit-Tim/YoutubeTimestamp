@@ -277,23 +277,25 @@ def main(url, lang, num_of_cluster, video_name):
     # print(partition)
     #result.append(partition)
     #result.append("\n")
-
-    for i in range (len(partition) - 1):
-        timestamp = list()
-        # print(time[partition[i]][0][:8],", [ " ,end = "")
-        result.append(time[partition[i]][0][:8])
-        result.append(", [ ")
-        sortvocab = getSortedVocab(stemText, partition[i], partition[i+1])
-        for j in range (4):
-            # print(sortvocab[j][0].upper(), end=", ")
-            timestamp.append(sortvocab[j][0].upper())
-        # print(sortvocab[4][0].upper(), end=" ")
-        timestamp.append(sortvocab[4][0].upper())
-        # print("]")
-        timestamp = ", ".join(timestamp)
-        result.append(timestamp)
-        result.append(" ]\n\n")
-
+    try:
+        
+        for i in range (len(partition) - 1):
+            timestamp = list()
+            # print(time[partition[i]][0][:8],", [ " ,end = "")
+            result.append(time[partition[i]][0][:8])
+            result.append(", [ ")
+            sortvocab = getSortedVocab(stemText, partition[i], partition[i+1])
+            for j in range (4):
+                # print(sortvocab[j][0].upper(), end=", ")
+                timestamp.append(sortvocab[j][0].upper())
+            # print(sortvocab[4][0].upper(), end=" ")
+            timestamp.append(sortvocab[4][0].upper())
+            # print("]")
+            timestamp = ", ".join(timestamp)
+            result.append(timestamp)
+            result.append(" ]\n\n")
+    except:
+        return 4, " ", " "
     #centroid = divide_cent(sumFeature)
 
     #print("center", centroid, time[centroid])

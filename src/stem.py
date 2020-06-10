@@ -20,12 +20,17 @@ print(response.text)"""
 
 
 def preprocessing(url, video_name):
-    
-    yt = YouTube(url)
-    caption = yt.captions.get_by_language_code('en')
+    try: 
+        yt = YouTube(url)
+    except:
+        return 2, " "
 
-    caption.download(video_name) #기본 저장 형태가 srt인듯
+    try:
+        caption = yt.captions.get_by_language_code('en')
 
+        caption.download(video_name) #기본 저장 형태가 srt인듯
+    except:
+        return 3, " "
     #file = open("subtitle.srt", "r")
     file = open("{} (en).srt".format(video_name), "r", encoding='UTF8')
     subtitle = file.read()
